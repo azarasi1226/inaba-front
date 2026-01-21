@@ -14,9 +14,9 @@ const ProductCard = ( { product }: ProductCardProps ) => {
       </CardHeader>
       <CardContent>
         <Image
-          src={product.imageUrl ?? ""}
-          width={500}
-          height={500}
+          src={product.imageUrl ?? "/no-image.png"}
+          width={300}
+          height={300}
           alt="Picture of the product"
         />
       </CardContent>
