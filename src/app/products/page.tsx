@@ -31,13 +31,24 @@ const ProductsPage = async () => {
   const products: ProductsResponse = await response.json();
 
   return (
-    <>
-      <h1 className="text-2xl font-bold">商品一覧</h1>
-      {products.page.items.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </>
-)
+    <div className="px-16 py-8">
+      <h1 className="text-2xl font-bold mb-6">商品一覧</h1>
+
+      <div className="flex gap-8">
+        <aside className="w-64">
+          ToDo：フィルター
+        </aside>
+
+        <main className="flex-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+            {products.page.items.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </main>
+      </div>
+    </div>
+  )
 }
 
 export default ProductsPage;

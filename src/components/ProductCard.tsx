@@ -9,16 +9,15 @@ type ProductCardProps = {
 const ProductCard = ( { product }: ProductCardProps ) => {
   return (
     <Card>
-      <CardHeader>
-        <CardTitle>{product.id} - {product.name}</CardTitle>
-      </CardHeader>
       <CardContent>
         <Image
           src={product.imageUrl ?? "/no-image.png"}
           width={300}
           height={300}
-          alt="Picture of the product"
+          alt={product.name}
         />
+        <CardTitle>{product.name}</CardTitle>
+        <p>{product.price}円</p>
       </CardContent>
     </Card>
   )
