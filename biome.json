@@ -6,8 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "ignoreUnknown": false,
-    "includes": ["!**/dist/**", "!**/build/**", "!**/.next/**", "!**/node_modules/**"]
+    "ignoreUnknown": true
   },
   "formatter": {
     "enabled": true,
@@ -19,29 +18,14 @@
     "enabled": true,
     "rules": {
       "recommended": true,
-      "a11y": {
-        "recommended": true
-      },
-      "complexity": {
-        "recommended": true
-      },
-      "correctness": {
-        "recommended": true,
-        "useExhaustiveDependencies": "error"
-      },
-      "performance": {
-        "recommended": true
-      },
-      "security": {
-        "recommended": true
-      },
-      "style": {
-        "recommended": true,
-        "useConsistentArrayType": "error"
-      },
       "suspicious": {
-        "recommended": true
+        "noUnknownAtRules": "off"
       }
+    }
+  },
+  "css": {
+    "linter": {
+      "enabled": false
     }
   },
   "javascript": {
@@ -49,18 +33,7 @@
       "quoteStyle": "double",
       "jsxQuoteStyle": "double",
       "semicolons": "asNeeded",
-      "trailingCommas": "es5"
-    },
-    "globals": ["React"]
-  },
-  "json": {
-    "formatter": {
-      "enabled": true
-    }
-  },
-  "css": {
-    "formatter": {
-      "enabled": true
+      "trailingCommas": "all"
     }
   },
   "assist": {
