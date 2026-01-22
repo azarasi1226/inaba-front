@@ -1,12 +1,12 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import Image from 'next/image'
+import Image from "next/image"
 import type { Product } from "@/app/products/page"
+import { Card, CardContent, CardTitle } from "@/components/ui/card"
 
 type ProductCardProps = {
   product: Product
 }
 
-const ProductCard = ( { product }: ProductCardProps ) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Card>
       <CardContent>
@@ -23,4 +23,4 @@ const ProductCard = ( { product }: ProductCardProps ) => {
   )
 }
 
-export default ProductCard;
+export default ProductCard
