@@ -1,4 +1,5 @@
 import ProductCard from "@/components/ProductCard"
+import { buttonVariants } from "@/components/ui/button"
 
 export type Product = {
   id: string
@@ -33,7 +34,7 @@ const ProductsPage = async () => {
       <div className="flex flex-col items-center justify-center min-h-[50vh] gap-4">
         <h2 className="text-xl font-bold">データの取得に失敗しました</h2>
         <p className="text-gray-600">しばらく時間をおいて再度お試しください。</p>
-        <a href="/products" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+        <a href="/products" className={buttonVariants()}>
           もう一度試す
         </a>
       </div>
