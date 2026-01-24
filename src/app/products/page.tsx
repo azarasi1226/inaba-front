@@ -20,9 +20,12 @@ type ProductsResponse = {
   }
 }
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8082"
+
 const ProductsPage = async () => {
+  // URLSearchParamsを使用したパラメータ管理は次回PRで実装
   const response = await fetch(
-    "http://localhost:8082/api/products?likeProductName=&pageSize=10&pageNumber=1&sortCondition=PRICE_ASC",
+    `${API_BASE_URL}/api/products?likeProductName=&pageSize=10&pageNumber=1&sortCondition=PRICE_ASC`,
   )
 
   if (!response.ok) {
