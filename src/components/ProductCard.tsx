@@ -17,7 +17,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           alt={product.name}
         />
         <CardTitle>{product.name}</CardTitle>
-        <p>{product.price}円</p>
+        <p>{product.price.toLocaleString()}円</p>
       </CardContent>
     </Card>
   )
