@@ -1,4 +1,6 @@
+import { Suspense } from "react"
 import ProductCard from "@/components/ProductCard"
+import ProductSearch from "@/components/ProductSearch"
 import { buttonVariants } from "@/components/ui/button"
 
 export type Product = {
@@ -21,12 +23,19 @@ type ProductsResponse = {
   }
 }
 
+type ProductsPageProps = {
+  searchParams: Promise<{
+    search?: string
+  }>
+}
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8082"
 
-const ProductsPage = async () => {
-  // URLSearchParamsを使用したパラメータ管理は次回PRで実装
+const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
+  const params = await searchParams
+  const search = params.search ?? ""
   const response = await fetch(
-    `${API_BASE_URL}/api/products?likeProductName=&pageSize=10&pageNumber=1&sortCondition=PRICE_ASC`,
+    `${API_BASE_URL}/api/products?likeProductName=${encodeURIComponent(search)}&pageSize=100&pageNumber=1&sortCondition=PRICE_ASC`,
   )
 
   if (!response.ok) {
@@ -41,22 +50,26 @@ const ProductsPage = async () => {
     )
   }
 
-  const products: ProductsResponse = await response.json()
+  const data: ProductsResponse = await response.json()
 
   return (
     <div className="px-16 py-8">
       <h1 className="text-2xl font-bold mb-6">商品一覧</h1>
 
-      <div className="flex gap-8">
-        <aside className="w-64">ToDo：フィルター</aside>
+      <div className="mb-6">
+        <Suspense fallback={<div>読み込み中...</div>}>
+          <ProductSearch />
+        </Suspense>
+      </div>
 
-        <main className="flex-1">
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
-            {products.page.items.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </main>
+      <p className="text-sm text-gray-600 mb-4">
+        {data.page.paging.totalCount}件の商品が見つかりました
+      </p>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+        {data.page.items.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
       </div>
     </div>
   )
