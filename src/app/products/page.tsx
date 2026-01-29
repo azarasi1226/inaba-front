@@ -62,15 +62,23 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
         </Suspense>
       </div>
 
-      <p className="text-sm text-gray-600 mb-4">
-        {data.page.paging.totalCount}件の商品が見つかりました
-      </p>
+      {data.page.items.length > 0 ? (
+        <>
+          <p className="text-sm text-gray-600 mb-4">
+            {data.page.paging.totalCount}件の商品が見つかりました
+          </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
-        {data.page.items.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+            {data.page.items.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </>
+      ) : (
+        <div className="flex items-center justify-center min-h-[30vh]">
+          <p className="text-gray-600">該当する商品が見つかりませんでした</p>
+        </div>
+      )}
     </div>
   )
 }
