@@ -46,13 +46,14 @@ const ProductSearch = () => {
           <button
             type="button"
             onClick={handleClear}
+            aria-label="検索をクリア"
             className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
           >
             <X className="h-4 w-4" />
           </button>
         )}
       </div>
-      <Button type="submit" variant="outline" size="icon">
+      <Button type="submit" variant="outline" size="icon" aria-label="検索">
         <Search className="h-4 w-4" />
       </Button>
     </form>
