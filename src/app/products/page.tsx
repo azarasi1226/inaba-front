@@ -1,6 +1,6 @@
 import { Suspense } from "react"
-import ProductCard from "@/components/ProductCard"
-import ProductSearch from "@/components/ProductSearch"
+import ProductCard from "@/app/products/_components/ProductCard"
+import ProductSearch from "@/app/products/_components/ProductSearch"
 import { buttonVariants } from "@/components/ui/button"
 
 export type Product = {
