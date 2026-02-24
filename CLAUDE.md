@@ -32,20 +32,14 @@ npm run lint:check   # lint + format チェックのみ（修正なし）
 
 ```
 src/
-  app/
-    products/
-      _components/       # products ページ専用コンポーネント
-        ProductCard.tsx  # 商品カード（Server Component）
-        ProductSearch.tsx # 検索フォーム（Client Component）
-      page.tsx           # 商品一覧ページ（API fetch、searchParams受け取り）
-    layout.tsx           # ルートレイアウト（Geist フォント）
-    error.tsx            # エラーバウンダリ（Client Component）
-    not-found.tsx        # 404 ページ
-    page.tsx             # / → /products リダイレクト
+  app/                   # App Router（ページ・レイアウト）
+    {route}/
+      _components/       # そのルート専用コンポーネント（ルーティング対象外）
+      page.tsx
   components/
     ui/                  # shadcn/ui コンポーネント（直接編集しない）
   lib/
-    utils.ts             # cn() ヘルパー（clsx + tailwind-merge）
+    utils.ts             # cn() ヘルパー
 ```
 
 **コロケーション原則**: 特定ページ専用 → `app/{route}/_components/`、複数ページ共通 → `src/components/`
